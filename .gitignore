@@ -1,0 +1,17 @@
+*.*~
+*.bak
+*.db
+*.orig
+*.pyc
+*.pyo
+*.rdb
+*.swo
+*.swp
+*.vim
+\#*\#
+
+.idea
+
+build/
+src/
+ve/
