@@ -19,7 +19,7 @@ setup(
     url='https://github.com/cbjadwani/django_logbook',
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
-    packages=['django_logbook'],
+    packages=['django_logbook', 'django_logbook.migrations'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
