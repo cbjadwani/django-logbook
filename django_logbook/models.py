@@ -22,13 +22,18 @@ HEADLINE_LENGTH = 60
 class LogSummary(models.Model):
     "A summary of the log messages"
     checksum = models.CharField(max_length=32, primary_key=True)
-    level = models.PositiveIntegerField(choices=LEVEL_CHOICES, default=logbook.ERROR, blank=True, db_index=True)
+    level = models.PositiveIntegerField(choices=LEVEL_CHOICES,
+                                        default=logbook.ERROR,
+                                        blank=True, db_index=True)
     source = models.CharField(max_length=128, blank=True, db_index=True)
-    host = models.CharField(max_length=200, blank=True, null=True, db_index=True)
-    earliest = models.DateTimeField(default=datetime.datetime.now, db_index=True)
+    host = models.CharField(max_length=200, blank=True,
+                            null=True, db_index=True)
+    earliest = models.DateTimeField(default=datetime.datetime.now,
+                                    db_index=True)
     latest = models.DateTimeField(default=datetime.datetime.now, db_index=True)
     hits = models.IntegerField(default=0, null=False)
-    headline = models.CharField(max_length=HEADLINE_LENGTH, default='', blank=True)
+    headline = models.CharField(max_length=HEADLINE_LENGTH, default='',
+                                blank=True)
     latest_msg = models.TextField()
     summary_only = models.BooleanField(default=False)
 
@@ -39,7 +44,9 @@ class LogSummary(models.Model):
         app_label = 'django_logbook'
 
     def __unicode__(self):
-        return u"<LOGSUMMARY %s %s %s %s>" % (LEVEL_CHOICES_DICT.get(self.level, 'UNKNOWN'), self.host, self.source, self.headline)
+        return u"<LOGSUMMARY {0} {1} {2} {3}>".format(
+            LEVEL_CHOICES_DICT.get(self.level, 'UNKNOWN'),
+            self.host, self.source, self.headline)
 
     ## Admin methods
 
@@ -60,19 +67,26 @@ class LogSummary(models.Model):
 
 class Log(models.Model):
     "A log message, used by LogbookDjangoDatabaseHandler"
-    datetime = models.DateTimeField(default=datetime.datetime.now, db_index=True)
-    level = models.PositiveIntegerField(choices=LEVEL_CHOICES, default=logbook.ERROR, blank=True, db_index=True)
+    datetime = models.DateTimeField(default=datetime.datetime.now,
+                                    db_index=True)
+    level = models.PositiveIntegerField(choices=LEVEL_CHOICES,
+                                        default=logbook.ERROR,
+                                        blank=True, db_index=True)
     msg = models.TextField()
     source = models.CharField(max_length=128, blank=True, db_index=True)
-    host = models.CharField(max_length=200, blank=True, null=True, db_index=True)
-    summary = models.ForeignKey(LogSummary, related_name='logs', blank=True, null=True, db_index=True)
+    host = models.CharField(max_length=200, blank=True, null=True,
+                            db_index=True)
+    summary = models.ForeignKey(LogSummary, related_name='logs',
+                                blank=True, null=True, db_index=True)
 
     class Meta:
         ordering = ['-datetime']
         app_label = 'django_logbook'
 
     def __unicode__(self):
-        return u"<LOG %s %s %s %s>" % (LEVEL_CHOICES_DICT.get(self.level, 'UNKNOWN'), self.host, self.source, self.get_headline())
+        return u"<LOG {0} {1} {2} {3}>".format(
+            LEVEL_CHOICES_DICT.get(self.level, 'UNKNOWN'),
+            self.host, self.source, self.get_headline())
 
     ## Admin methods
 
@@ -123,9 +137,9 @@ def log_saved_callback(sender, **kwargs):
                     'headline': newlog.get_headline(),
                     'earliest': newlog.datetime,
                     'summary_only': False}
-        (summary, _) = LogSummary.objects.get_or_create(checksum=newlog.get_checksum(),
-                                                        defaults=defaults
-                                                        )
+        (summary, _) = LogSummary.objects.get_or_create(
+            checksum=newlog.get_checksum(),
+            defaults=defaults)
         summary.latest = newlog.datetime
         summary.latest_msg = newlog.msg
         summary.hits += 1
@@ -148,7 +162,8 @@ def init():
 
     from django_logbook import handlers
 
-    db_handler = handlers.LogbookDjangoDatabaseHandler(level=settings.LOG_LEVEL_DB_HANDLER)
+    db_handler = handlers.LogbookDjangoDatabaseHandler(
+        level=settings.LOG_LEVEL_DB_HANDLER)
     db_handler.push_application()
 
     redirect_logging()  # redirect stdlib logging to logbook

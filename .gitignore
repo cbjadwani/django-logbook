@@ -1,4 +1,4 @@
-*.*~
+*~
 *.bak
 *.db
 *.orig
@@ -9,9 +9,7 @@
 *.swp
 *.vim
 \#*\#
-
 .idea
-
 build/
 src/
 ve/

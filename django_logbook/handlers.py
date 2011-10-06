@@ -64,12 +64,10 @@ def get_fingers_crossed_mailhandler(request):
     django_send_mail_handler = DjangoSendMailHandler(
             request,
             level=settings.LOG_LEVEL_MAIL_HANDLER,
-            format_string=settings.LOG_FORMAT_STRING
-    )
+            format_string=settings.LOG_FORMAT_STRING)
     fingers_crossed_mailhandler = logbook.FingersCrossedHandler(
             handler=django_send_mail_handler,
             action_level=settings.LOG_ACTIONLEVEL_FINGERSCROSSED_HANDLER,
             bubble=True,
-            reset=True
-    )
+            reset=True)
     return fingers_crossed_mailhandler
