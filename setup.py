@@ -6,7 +6,7 @@ Django Web Framework.
 """
 
 from setuptools import setup
-
+n
 setup(
     name='django-logbook',
     version='0.0.0',
@@ -20,6 +20,7 @@ setup(
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
     packages=['django_logbook', 'django_logbook.migrations'],
+    install_requires=['Logbook>=0.3'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Web Environment',
