@@ -6,7 +6,7 @@ Django Web Framework.
 """
 
 from setuptools import setup
-n
+
 setup(
     name='django-logbook',
     version='0.0.0',
