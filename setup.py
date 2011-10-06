@@ -8,7 +8,7 @@ Django Web Framework.
 from setuptools import setup
 
 setup(
-    name='django_logbook',
+    name='django-logbook',
     version='0.0.0',
     description='A package that implements new logbook logging facilities ' + \
                 'for Django',
@@ -16,7 +16,7 @@ setup(
                      'facilities for Django Web Framework',
     license='BSD',
     keywords='django logbook logging',
-    url='https://github.com/cbjadwani/django_logbook',
+    url='https://github.com/cbjadwani/django-logbook',
     author='oDesk, www.odesk.com',
     author_email='developers@odesk.com',
     packages=['django_logbook', 'django_logbook.migrations'],

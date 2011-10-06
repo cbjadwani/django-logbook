@@ -2,7 +2,7 @@
 Information
 ===========
 
-django_logbook is logbook plugin for Django Web Framework which adds new logging facilities to it.
+django-logbook is logbook plugin for Django Web Framework which adds new logging facilities to it.
 
 ============
 Installation
@@ -15,6 +15,8 @@ Add next lines to your settings.py::
  
  LOG_LEVEL_DB_HANDLER = logbook.INFO
  LOG_LEVEL_LOGGING_GLOBAL = logging.ERROR
+
+Don't forget to add 'django_logbook' to INSTALLED_APPS tuple.
 
 Run::
 
