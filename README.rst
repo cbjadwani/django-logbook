@@ -8,7 +8,7 @@ django_logbook is logbook plugin for Django Web Framework which adds new logging
 Installation
 ============
 
-Add next lines to your settings.py:
+Add next lines to your settings.py::
 
  import logging
  import logbook
