@@ -34,12 +34,23 @@ How to use
 For example we have file app/views.py, add next lines into it::
 
  import logbook
-
- logging = logbook.Logger('app.views')
+ log = logbook.Logger('app.views')
 
 After this you can log anything you want to django-logbook database::
+
+ log.error("Auth failed")
+ log.info("Have a nice day")
+
+But if you used logging before like that::
+
+ import logging
 
  logging.error("Auth failed")
  logging.info("Have a nice day")
 
+All you need is just to remove "import logging" and add next lines::
 
+ import logbook
+ logging = logbook.Logger('app.views')
+
+This will work because logbook was made to be compatible with logging library.
