@@ -1,7 +1,7 @@
 from django_logbook.handlers import get_fingers_crossed_mailhandler
 
 
-class FigersCrossedLogMiddleware(object):
+class FingersCrossedLogMiddleware(object):
     def process_request(self, request):
         fingers_crossed_handler = get_fingers_crossed_mailhandler(request)
         request.fingers_crossed_handler = fingers_crossed_handler
